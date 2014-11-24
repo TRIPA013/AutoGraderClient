@@ -6,7 +6,39 @@
 		<managed-bean-name>loginBean</managed-bean-name>
 		<managed-bean-class>com.osu.autograder.LoginBean</managed-bean-class>
 		<managed-bean-scope>application</managed-bean-scope>
-
 	</managed-bean>
+
+	<navigation-rule>
+		<display-name>login.xhtml</display-name>
+		<from-view-id>/login.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>Student</from-outcome>
+			<to-view-id>/studentcourses.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>login.xhtml</display-name>
+		<from-view-id>/login.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>Instructor</from-outcome>
+			<to-view-id>/instructorcourses.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>login.xhtml</display-name>
+		<from-view-id>/login.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>false</from-outcome>
+			<to-view-id>/loginfail.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>loginfail.xhtml</display-name>
+		<from-view-id>/loginfail.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>back</from-outcome>
+			<to-view-id>/login.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
 
 </faces-config>

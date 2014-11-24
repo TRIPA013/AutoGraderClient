@@ -1,5 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PROCESS model-entity="JSFProcess">
- <PROCESS-ITEM NAME="rules:#registered.xhtml" PATH="/registered.xhtml"
-  SHAPE="208,160,0,0" model-entity="JSFProcessGroup" persistent="true"/>
+ <PROCESS-ITEM NAME="rules:#login.xhtml" PATH="/login.xhtml"
+  SHAPE="32,17,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#login.xhtml:0" NAME="item"
+   PATH="/login.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="Student::#studentcourses.xhtml"
+    NAME="output" PATH="/studentcourses.xhtml"
+    TARGET="rules:#studentcourses.xhtml" TITLE="Student" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+  <PROCESS-ITEM ID="rules:#login.xhtml:1" NAME="item1"
+   PATH="/login.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="Instructor::#instructorcourses.xhtml"
+    NAME="output" PATH="/instructorcourses.xhtml"
+    TARGET="rules:#instructorcourses.xhtml" TITLE="Instructor" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+  <PROCESS-ITEM ID="rules:#login.xhtml:2" NAME="item2"
+   PATH="/login.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="false::#loginfail.xhtml" NAME="output"
+    PATH="/loginfail.xhtml" TARGET="rules:#loginfail.xhtml"
+    TITLE="false" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#studentcourses.xhtml"
+  PATH="/studentcourses.xhtml" SHAPE="256,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#instructorcourses.xhtml"
+  PATH="/instructorcourses.xhtml" SHAPE="256,289,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#loginfail.xhtml" PATH="/loginfail.xhtml"
+  SHAPE="40,240,50,41" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#loginfail.xhtml:0" NAME="item"
+   PATH="/loginfail.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="back::#login.xhtml" NAME="output"
+    PATH="/login.xhtml" TARGET="rules:#login.xhtml" TITLE="back" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
 </PROCESS>

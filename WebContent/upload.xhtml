@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition>
+	<form action="http://www.htmlref.com/scripts/fileupload.php"
+		method="post" enctype="multipart/form-data" name="form1" id="form1">
+
+		<strong>File Description:</strong> <br /> <input type="text"
+			name="Description" id="Description" size="50" maxlength="100" /> <br />
+		<br /> <strong>Specify File:</strong> <br /> <input type="file"
+			name="FileName" id="FileName" />
+
+		<hr />
+		<input type="submit" value="Upload" name="SubmitButton"
+			id="SubmitButton" /> <input type="reset" value="Reset" />
+	</form>
+</ui:composition>
+</html>

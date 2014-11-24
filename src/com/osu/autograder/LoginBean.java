@@ -41,8 +41,10 @@ public class LoginBean {
 		userEntity.setName(name);
 		userEntity.setPassword(password);
 		userEntity = loginSession.login(userEntity);
-
-		return "true";
+		if (userEntity == null) {
+			return "false";
+		}
+		return selection;
 	}
 
 	public String getMessage() {
