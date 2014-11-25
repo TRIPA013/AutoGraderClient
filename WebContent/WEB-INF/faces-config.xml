@@ -25,14 +25,21 @@
 		<managed-bean-class>com.osu.autograder.AssignmentBean</managed-bean-class>
 		<managed-bean-scope>application</managed-bean-scope>
 		<managed-property>
-			<property-name>logBean</property-name>
-			<property-class>com.osu.autograder.LoginBean</property-class>
-			<value>#{loginBean}</value>
-		</managed-property>
-		<managed-property>
 			<property-name>courseBean</property-name>
 			<property-class>com.osu.autograder.CourseBean</property-class>
 			<value>#{courseBean}</value>
+		</managed-property>
+	</managed-bean>
+	
+	
+	<managed-bean>
+		<managed-bean-name>assignmentFileBean</managed-bean-name>
+		<managed-bean-class>com.osu.autograder.AssignmentFileBean</managed-bean-class>
+		<managed-bean-scope>application</managed-bean-scope>
+		<managed-property>
+			<property-name>assignmentBean</property-name>
+			<property-class>com.osu.autograder.AssignmentBean</property-class>
+			<value>#{assignmentBean}</value>
 		</managed-property>
 	</managed-bean>
 

@@ -13,9 +13,16 @@
 <ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml">
 	<ui:define name="content">
 		<h:form>
-			<h:outputText value="Select Action: "></h:outputText>
-			<ui:repeat value="#{assignmentBean.assignmentList}" var="assignment">
+			<h:outputText value="Assignments: "></h:outputText>
 
+			<br />
+			<br />
+
+			<ui:repeat value="#{assignmentBean.assignmentList}" var="assignment">
+				<h:outputText value="Assignment "></h:outputText>
+				<h:outputText value="#{assignment.assignmentID}"></h:outputText>
+
+				<h:outputText value=":				"></h:outputText>
 				<h:commandButton value="Upload Assignment"
 					action="#{assignmentBean.onAssignmentUploadSelected(assignment)}" />
 

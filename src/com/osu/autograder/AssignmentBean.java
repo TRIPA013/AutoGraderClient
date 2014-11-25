@@ -17,18 +17,9 @@ public class AssignmentBean {
 	@EJB
 	private AssignmentService assignmentService;
 	private CourseBean courseBean;
-	private LoginBean logBean;
-	private AssignmentEntity selectAssignmentEntity;
+	private AssignmentEntity selectedAssignmentEntity;
 
 	private List<AssignmentEntity> assignmentList;
-
-	public LoginBean getLogBean() {
-		return logBean;
-	}
-
-	public void setLogBean(LoginBean logBean) {
-		this.logBean = logBean;
-	}
 
 	public CourseBean getcourseBean() {
 		return courseBean;
@@ -49,13 +40,13 @@ public class AssignmentBean {
 
 	}
 
-	public AssignmentEntity getSelectAssignmentEntity() {
-		return selectAssignmentEntity;
+	public AssignmentEntity getSelectedAssignmentEntity() {
+		return selectedAssignmentEntity;
 	}
 
-	public void setSelectAssignmentEntity(
-			AssignmentEntity selectAssignmentEntity) {
-		this.selectAssignmentEntity = selectAssignmentEntity;
+	public void setSelectedAssignmentEntity(
+			AssignmentEntity selectedAssignmentEntity) {
+		this.selectedAssignmentEntity = selectedAssignmentEntity;
 	}
 
 	/**
@@ -74,12 +65,12 @@ public class AssignmentBean {
 	}
 
 	public String onAssignmentUploadSelected(AssignmentEntity assignmentEntity) {
-		setSelectAssignmentEntity(assignmentEntity);
+		setSelectedAssignmentEntity(assignmentEntity);
 		return "upload";
 	}
 
 	public String onAssignmentGradesSelected(AssignmentEntity assignmentEntity) {
-		setSelectAssignmentEntity(assignmentEntity);
+		setSelectedAssignmentEntity(assignmentEntity);
 		return "grade";
 	}
 
