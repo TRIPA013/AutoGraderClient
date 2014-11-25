@@ -6,12 +6,12 @@ package com.osu.autograder;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 
 import com.osu.autograder.EJB.Entity.CourseEntity;
 import com.osu.autograder.EJB.Entity.UserEntity;
 import com.osu.autograder.EJB.Service.CourseService;
-import com.osu.autograder.EJB.Service.LoginService;
 
 public class CourseBean {
 
@@ -43,10 +43,14 @@ public class CourseBean {
 	}
 
 	public boolean addCourse(CourseEntity courseEntity) {
-		
+
 		UserEntity userEntity = logBean.getUserEntity();
 		return courseService.addCourse(courseEntity);
 
 	}
 
+	@PostConstruct
+	public void load() {
+		findCourses();
+	}
 }

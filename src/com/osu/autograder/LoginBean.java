@@ -12,23 +12,34 @@ public class LoginBean {
 
 	@EJB
 	private LoginService loginSession;
-	private UserEntity userEntity;
+
+	private UserEntity userEntity = new UserEntity();
+
+	private String selection;
+
+	public String login() {
+		userEntity.setTechnology(selection.charAt(0));
+		UserEntity newUserEntity = loginSession.login(userEntity);
+		if (newUserEntity == null) {
+			return "false";
+		}
+		userEntity = newUserEntity;
+		return selection;
+	}
+
+	public String getSelection() {
+		return selection;
+	}
+
+	public void setSelection(String selection) {
+		this.selection = selection;
+	}
 
 	public UserEntity getUserEntity() {
-		return this.userEntity;
+		return userEntity;
 	}
 
 	public void setUserEntity(UserEntity userEntity) {
 		this.userEntity = userEntity;
-	}
-
-	public boolean login() {
-		UserEntity newUserEntity = new UserEntity();
-		newUserEntity = loginSession.login(userEntity);
-		if (newUserEntity == null) {
-			return false;
-		}
-		this.userEntity = newUserEntity;
-		return true;
 	}
 }

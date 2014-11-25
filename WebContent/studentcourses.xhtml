@@ -6,25 +6,28 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core">
 
+<f:metadata>
+	<f:event listener="#{courseBean.load}" type="preRenderView" />
+</f:metadata>
+
 <ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml">
 	<ui:define name="content">
+
 		<h:form>
 			<h:outputText value="Courses: "></h:outputText>
 
 			<br />
 			<br />
 
-			<ui:repeat value="#{StudentCoursesBean.courses}" var="x">
+			<ui:repeat value="#{courseBean.courses}" var="course">
 				<h:outputText value="Course:"></h:outputText>
-
-
-				<h:panelGrid columns="2">
+				<h:panelGrid columns="2" onclick="">
 
 					<h:outputText value="Title:"></h:outputText>
-					<h:outputText value="#{x[0]}" />
+					<h:outputText value="#{course.courseID}" />
 
 					<h:outputText value="Name:"></h:outputText>
-					<h:outputText value="#{x[1]}" />
+					<h:outputText value="#{course.courseName}" />
 
 					<br />
 				</h:panelGrid>

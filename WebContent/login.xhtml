@@ -11,15 +11,15 @@
 		<h:form>
 			<h:panelGrid columns="2">
 				<h:outputText value="Name"></h:outputText>
-				<h:inputText value="#{loginBean.name}"></h:inputText>
+				<h:inputText value="#{loginBean.userEntity.userName}"></h:inputText>
 				<h:outputText value="Password"></h:outputText>
-				<h:inputSecret value="#{loginBean.password}"></h:inputSecret>
+				<h:inputSecret value="#{loginBean.userEntity.password}"></h:inputSecret>
 			</h:panelGrid>
 			<h:selectOneRadio value="#{loginBean.selection}">
 				<f:selectItem itemValue="Student" itemLabel="Student" />
 				<f:selectItem itemValue="Instructor" itemLabel="Instructor" />
 			</h:selectOneRadio>
-			<h:commandButton value="Login" action="#{loginBean.userName}"></h:commandButton>
+			<h:commandButton value="Login" action="#{loginBean.login}"></h:commandButton>
 
 		</h:form>
 	</ui:define>

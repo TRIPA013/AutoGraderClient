@@ -8,6 +8,17 @@
 		<managed-bean-scope>application</managed-bean-scope>
 	</managed-bean>
 
+	<managed-bean>
+		<managed-bean-name>courseBean</managed-bean-name>
+		<managed-bean-class>com.osu.autograder.CourseBean</managed-bean-class>
+		<managed-bean-scope>application</managed-bean-scope>
+		<managed-property>
+			<property-name>logBean</property-name>
+			<property-class>com.osu.autograder.LoginBean</property-class>
+			<value>#{loginBean}</value>
+		</managed-property>
+	</managed-bean>
+
 	<navigation-rule>
 		<display-name>login.xhtml</display-name>
 		<from-view-id>/login.xhtml</from-view-id>
