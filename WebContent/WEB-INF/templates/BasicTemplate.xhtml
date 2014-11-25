@@ -8,22 +8,19 @@
 
 <body>
 
-	<div id="header">
+	<div id="header" align="center">
 		<ui:insert name="header">
 			<ui:include src="/WEB-INF/templates/header.xhtml" />
+
 		</ui:insert>
 	</div>
 
-	<div id="content">
-		<ui:insert name="content">
-		</ui:insert>
-	</div>
-
-	<div id="footer">
-			<ui:insert name="footer">
-				<ui:include src="/WEB-INF/templates/footer.xhtml" />
+	<div id="content" align="center">
+		<b> <ui:insert name="content">
 			</ui:insert>
+		</b>
 	</div>
+
 
 </body>
 </html>
