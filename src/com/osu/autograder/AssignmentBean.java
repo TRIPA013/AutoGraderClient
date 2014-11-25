@@ -8,10 +8,13 @@ import javax.ejb.EJB;
 import com.osu.autograder.EJB.Entity.UserEntity;
 import com.osu.autograder.EJB.Service.LoginSession;
 
-public class LoginBean {
+public class AssignmentBean {
 
+	// private static final Logger log =
+	// LoggerFactory.getLogger(LoginBean.class);
+	// Logger logger = LoggerFactory.getLogger(LoginBean.class);
 	@EJB
-	private LoginSession loginSession;
+	private LoginSession helloService;
 	private String name;
 	private String password;
 	private String selection;
@@ -24,7 +27,8 @@ public class LoginBean {
 		this.selection = selection;
 	}
 
-	
+	@EJB
+	private LoginSession loginSession;
 
 	public String userName() {
 
