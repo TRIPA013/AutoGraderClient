@@ -43,7 +43,7 @@ public class CourseBean {
 	}
 
 	public boolean addCourse(CourseEntity courseEntity) {
-		
+
 		UserEntity userEntity = logBean.getUserEntity();
 		return courseService.addCourse(courseEntity);
 
