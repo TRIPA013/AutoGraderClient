@@ -8,19 +8,18 @@ import java.util.List;
 
 import javax.ejb.EJB;
 
+import com.osu.autograder.EJB.Entity.CourseEntity;
 import com.osu.autograder.EJB.Entity.UserEntity;
-import com.osu.autograder.EJB.Service.LoginSession;
+import com.osu.autograder.EJB.Service.CourseService;
+import com.osu.autograder.EJB.Service.LoginService;
 
 public class CourseBean {
 
 	@EJB
-	private CourseBean CourseBean;
-	@EJB
+	private CourseService courseService;
 	private LoginBean logBean;
 
-	private String user;
-
-	private List<List<String>> courseList = new ArrayList<List<String>>();
+	private List<CourseEntity> courseList = new ArrayList<CourseEntity>();
 
 	public LoginBean getLogBean() {
 		return logBean;
@@ -30,33 +29,23 @@ public class CourseBean {
 		this.logBean = logBean;
 	}
 
-	public List<List<String>> getCourses() {
+	public List<CourseEntity> getCourses() {
 		return courseList;
 	}
 
-	public void setCourses(List<List<String>> courseList) {
+	public void setCourses(List<CourseEntity> courseList) {
 		this.courseList = courseList;
 	}
 
-	public String getUser() {
-		return user;
+	public void findCourses() {
+		UserEntity userEntity = logBean.getUserEntity();
+		this.courseList = courseService.findCourses(userEntity);
 	}
 
-	public void setUser(String user) {
-		this.user = user;
-	}
-
-	public String courseAdd() {
-
-		user = logBean.getName();
-		jobs = jobsAdded.jobsAdded(user);
-
-		if (jobs.isEmpty())
-			return "false";
-
-		else {
-			return "true";
-		}
+	public boolean addCourse(CourseEntity courseEntity) {
+		
+		UserEntity userEntity = logBean.getUserEntity();
+		return courseService.addCourse(courseEntity);
 
 	}
 

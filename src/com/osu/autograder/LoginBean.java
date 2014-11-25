@@ -6,61 +6,29 @@ package com.osu.autograder;
 import javax.ejb.EJB;
 
 import com.osu.autograder.EJB.Entity.UserEntity;
-import com.osu.autograder.EJB.Service.LoginSession;
+import com.osu.autograder.EJB.Service.LoginService;
 
 public class LoginBean {
 
 	@EJB
-	private LoginSession loginSession;
-	private String name;
-	private String password;
-	private String selection;
+	private LoginService loginSession;
+	private UserEntity userEntity;
 
-	public String getSelection() {
-		return selection;
+	public UserEntity getUserEntity() {
+		return this.userEntity;
 	}
 
-	public void setSelection(String selection) {
-		this.selection = selection;
+	public void setUserEntity(UserEntity userEntity) {
+		this.userEntity = userEntity;
 	}
 
-	
-
-	public String userName() {
-
-		String[] params = new String[3];
-		params[0] = name;
-		params[1] = password;
-		params[2] = selection;
-
-		UserEntity userEntity = new UserEntity();
-		userEntity.setName(name);
-		userEntity.setPassword(password);
-		userEntity = loginSession.login(userEntity);
-		if (userEntity == null) {
-			return "false";
+	public boolean login() {
+		UserEntity newUserEntity = new UserEntity();
+		newUserEntity = loginSession.login(userEntity);
+		if (newUserEntity == null) {
+			return false;
 		}
-		return selection;
+		this.userEntity = newUserEntity;
+		return true;
 	}
-
-	public String getMessage() {
-		return "lol";
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(final String name) {
-		this.name = name;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(final String password) {
-		this.password = password;
-	}
-
 }

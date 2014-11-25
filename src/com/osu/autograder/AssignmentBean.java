@@ -3,68 +3,49 @@
  */
 package com.osu.autograder;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.ejb.EJB;
 
-import com.osu.autograder.EJB.Entity.UserEntity;
-import com.osu.autograder.EJB.Service.LoginSession;
+import com.osu.autograder.EJB.Entity.AssignmentEntity;
+import com.osu.autograder.EJB.Entity.CourseEntity;
+import com.osu.autograder.EJB.Service.AssignmentService;
 
 public class AssignmentBean {
 
-	// private static final Logger log =
-	// LoggerFactory.getLogger(LoginBean.class);
-	// Logger logger = LoggerFactory.getLogger(LoginBean.class);
 	@EJB
-	private LoginSession helloService;
-	private String name;
-	private String password;
-	private String selection;
+	private AssignmentService assignmentService;
+	private CourseBean courseBean;
+	private LoginBean logBean;
 
-	public String getSelection() {
-		return selection;
+	private List<AssignmentEntity> assignmentList = new ArrayList<AssignmentEntity>();
+
+	public LoginBean getLogBean() {
+		return logBean;
 	}
 
-	public void setSelection(String selection) {
-		this.selection = selection;
+	public void setLogBean(LoginBean logBean) {
+		this.logBean = logBean;
 	}
 
-	@EJB
-	private LoginSession loginSession;
-
-	public String userName() {
-
-		String[] params = new String[3];
-		params[0] = name;
-		params[1] = password;
-		params[2] = selection;
-
-		UserEntity userEntity = new UserEntity();
-		userEntity.setName(name);
-		userEntity.setPassword(password);
-		userEntity = loginSession.login(userEntity);
-		if (userEntity == null) {
-			return "false";
-		}
-		return selection;
+	public CourseBean getcourseBean() {
+		return courseBean;
 	}
 
-	public String getMessage() {
-		return "lol";
+	public void setCourseBean(CourseBean courseBean) {
+		this.courseBean = courseBean;
 	}
 
-	public String getName() {
-		return name;
+	public void findAssignments(CourseEntity courseEntity) {
+
+		this.assignmentList = assignmentService.findAssignments(courseEntity);
 	}
 
-	public void setName(final String name) {
-		this.name = name;
-	}
+	public boolean addAssignment(AssignmentEntity assignmentEntity) {
 
-	public String getPassword() {
-		return password;
-	}
+	
+		return assignmentService.addAssignment(assignmentEntity);
 
-	public void setPassword(final String password) {
-		this.password = password;
 	}
-
 }
