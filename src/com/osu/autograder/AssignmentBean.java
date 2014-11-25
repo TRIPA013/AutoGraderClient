@@ -3,9 +3,9 @@
  */
 package com.osu.autograder;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 
 import com.osu.autograder.EJB.Entity.AssignmentEntity;
@@ -20,7 +20,7 @@ public class AssignmentBean {
 	private LoginBean logBean;
 	private AssignmentEntity selectAssignmentEntity;
 
-	private List<AssignmentEntity> assignmentList = new ArrayList<AssignmentEntity>();
+	private List<AssignmentEntity> assignmentList;
 
 	public LoginBean getLogBean() {
 		return logBean;
@@ -78,8 +78,19 @@ public class AssignmentBean {
 		return "upload";
 	}
 
-	public String onAssignmentGradeSelected(AssignmentEntity assignmentEntity) {
+	public String onAssignmentGradesSelected(AssignmentEntity assignmentEntity) {
 		setSelectAssignmentEntity(assignmentEntity);
 		return "grade";
 	}
+
+	@PostConstruct
+	public void load() {
+		findAssignments();
+	}
+
+	private void findAssignments() {
+		assignmentList = assignmentService.findAssignments(courseBean
+				.getSelectedCourse());
+	}
+
 }
