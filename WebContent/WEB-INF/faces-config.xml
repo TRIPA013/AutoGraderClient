@@ -19,6 +19,25 @@
 		</managed-property>
 	</managed-bean>
 
+
+	<managed-bean>
+		<managed-bean-name>assignmentBean</managed-bean-name>
+		<managed-bean-class>com.osu.autograder.AssignmentBean</managed-bean-class>
+		<managed-bean-scope>application</managed-bean-scope>
+		<managed-property>
+			<property-name>logBean</property-name>
+			<property-class>com.osu.autograder.LoginBean</property-class>
+			<value>#{loginBean}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>courseBean</property-name>
+			<property-class>com.osu.autograder.CourseBean</property-class>
+			<value>#{courseBean}</value>
+		</managed-property>
+	</managed-bean>
+
+
+
 	<navigation-rule>
 		<display-name>login.xhtml</display-name>
 		<from-view-id>/login.xhtml</from-view-id>
@@ -49,6 +68,25 @@
 		<navigation-case>
 			<from-outcome>back</from-outcome>
 			<to-view-id>/login.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<display-name>studentcourses.xhtml</display-name>
+		<from-view-id>/studentcourses.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>Student</from-outcome>
+			<to-view-id>/studentcourseaction.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	
+	<navigation-rule>
+		<display-name>studentcourseaction.xhtml</display-name>
+		<from-view-id>/studentcourseaction.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>upload</from-outcome>
+			<to-view-id>/studentupload.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 

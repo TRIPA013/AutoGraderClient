@@ -10,18 +10,14 @@
 	<ui:define name="content">
 		<h:form>
 			<h:outputText value="Select Action: "></h:outputText>
+			<ui:repeat value="#{assignmentBean.assignmentList}" var="assignment">
 
-			<select>
+				<h:commandButton value="Upload Assignment"
+					action="#{assignmentBean.onAssignmentUploadSelected(assignment)}" />
 
-				<option value="add">Add Assignment</option>
-
-				<option value="grade">Grade Assignment</option>
-
-				<option value="view">View Assignments</option>
-
-
-			</select>
-
+				<h:commandButton value="View Grades"
+					action="#{assignmentBean.onAssignmentGradesSelected(assignment)}" />
+			</ui:repeat>
 			<br />
 			<br />
 		</h:form>

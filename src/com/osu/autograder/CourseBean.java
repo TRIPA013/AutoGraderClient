@@ -17,9 +17,12 @@ public class CourseBean {
 
 	@EJB
 	private CourseService courseService;
+
 	private LoginBean logBean;
 
-	private List<CourseEntity> courseList = new ArrayList<CourseEntity>();
+	private CourseEntity selectedCourse;
+
+	private List<CourseEntity> courses = new ArrayList<CourseEntity>();
 
 	public LoginBean getLogBean() {
 		return logBean;
@@ -30,20 +33,19 @@ public class CourseBean {
 	}
 
 	public List<CourseEntity> getCourses() {
-		return courseList;
+		return courses;
 	}
 
 	public void setCourses(List<CourseEntity> courseList) {
-		this.courseList = courseList;
+		this.courses = courseList;
 	}
 
 	public void findCourses() {
 		UserEntity userEntity = logBean.getUserEntity();
-		this.courseList = courseService.findCourses(userEntity);
+		this.courses = courseService.findCourses(userEntity);
 	}
 
 	public boolean addCourse(CourseEntity courseEntity) {
-
 		UserEntity userEntity = logBean.getUserEntity();
 		return courseService.addCourse(courseEntity);
 
@@ -52,5 +54,20 @@ public class CourseBean {
 	@PostConstruct
 	public void load() {
 		findCourses();
+	}
+	
+
+	public CourseEntity getSelectedCourse() {
+		return selectedCourse;
+	}
+
+	public void setSelectedCourse(CourseEntity selectedCourse) {
+		this.selectedCourse = selectedCourse;
+	}
+	
+	
+	public String onCourseSelected(CourseEntity seleCourseEntity){
+		setSelectedCourse(seleCourseEntity);
+		return logBean.getSelection();
 	}
 }
