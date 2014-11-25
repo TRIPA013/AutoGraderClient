@@ -9,6 +9,12 @@
 	</managed-bean>
 
 	<managed-bean>
+		<managed-bean-name>uploadBean</managed-bean-name>
+		<managed-bean-class>com.osu.autograder.UploadBean</managed-bean-class>
+		<managed-bean-scope>application</managed-bean-scope>
+	</managed-bean>
+
+	<managed-bean>
 		<managed-bean-name>courseBean</managed-bean-name>
 		<managed-bean-class>com.osu.autograder.CourseBean</managed-bean-class>
 		<managed-bean-scope>application</managed-bean-scope>
@@ -30,8 +36,8 @@
 			<value>#{courseBean}</value>
 		</managed-property>
 	</managed-bean>
-	
-	
+
+
 	<managed-bean>
 		<managed-bean-name>assignmentFileBean</managed-bean-name>
 		<managed-bean-class>com.osu.autograder.AssignmentFileBean</managed-bean-class>
@@ -77,7 +83,7 @@
 			<to-view-id>/login.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
-	
+
 	<navigation-rule>
 		<display-name>studentcourses.xhtml</display-name>
 		<from-view-id>/studentcourses.xhtml</from-view-id>
@@ -86,8 +92,8 @@
 			<to-view-id>/studentcourseaction.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
-	
-	
+
+
 	<navigation-rule>
 		<display-name>studentcourseaction.xhtml</display-name>
 		<from-view-id>/studentcourseaction.xhtml</from-view-id>

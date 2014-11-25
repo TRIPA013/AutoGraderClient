@@ -3,9 +3,15 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="lib/javax.persistence-3.0-prelude-embedded-m2.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Abhinav/GateIn-3.6.0.Final-jbossas7/modules/javax/ejb/api/main/jboss-ejb-api_3.1_spec-1.0.1.Final.jar"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry exported="true" kind="lib" path="lib/javax.persistence-3.0-prelude-embedded-m2.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Abhinav/GateIn-3.6.0.Final-jbossas7/modules/javax/ejb/api/main/jboss-ejb-api_3.1_spec-1.0.1.Final.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/commons-el-1.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/commons-fileupload-1.2.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/commons-io-1.3.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/commons-logging-1.1.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/tomahawk20-1.1.14.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/javax.faces-api-2.1.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

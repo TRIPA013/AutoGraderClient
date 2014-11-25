@@ -4,20 +4,34 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:t="http://myfaces.apache.org/tomahawk">
 
-<ui:composition>
-	<form action="http://www.htmlref.com/scripts/fileupload.php"
-		method="post" enctype="multipart/form-data" name="form1" id="form1">
+<f:view>
+	<html lang="en">
+<head>
+<title>File upload test</title>
+</head>
+<body>
+	<h:form id="uploadForm" enctype="multipart/form-data">
+		<h:panelGrid columns="3">
+			<h:outputLabel for="file" value="Select file" />
+			<t:inputFileUpload id="file" value="#{uploadBean.uploadedFile}"
+				required="true" />
+			<h:message for="file" style="color: red;" />
 
-		<strong>File Description:</strong> <br /> <input type="text"
-			name="Description" id="Description" size="50" maxlength="100" /> <br />
-		<br /> <strong>Specify File:</strong> <br /> <input type="file"
-			name="FileName" id="FileName" />
+			<h:panelGroup />
+			<h:commandButton value="Submit" action="#{uploadBean.submit}" />
+			<h:message for="uploadForm" infoStyle="color: green;"
+				errorStyle="color: red;" />
+		</h:panelGrid>
+	</h:form>
 
-		<hr />
-		<input type="submit" value="Upload" name="SubmitButton"
-			id="SubmitButton" /> <input type="reset" value="Reset" />
-	</form>
-</ui:composition>
+	<h:outputLink value="file/#{uploadBean.fileName}"
+		rendered="#{uploadBean.fileName != null}">
+                Download back
+            </h:outputLink>
+</body>
+	</html>
+</f:view>
 </html>
