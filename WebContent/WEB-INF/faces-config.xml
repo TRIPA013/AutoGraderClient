@@ -9,12 +9,6 @@
 	</managed-bean>
 
 	<managed-bean>
-		<managed-bean-name>uploadBean</managed-bean-name>
-		<managed-bean-class>com.osu.autograder.UploadBean</managed-bean-class>
-		<managed-bean-scope>application</managed-bean-scope>
-	</managed-bean>
-
-	<managed-bean>
 		<managed-bean-name>courseBean</managed-bean-name>
 		<managed-bean-class>com.osu.autograder.CourseBean</managed-bean-class>
 		<managed-bean-scope>application</managed-bean-scope>
@@ -49,6 +43,17 @@
 		</managed-property>
 	</managed-bean>
 
+
+	<managed-bean>
+		<managed-bean-name>uploadBean</managed-bean-name>
+		<managed-bean-class>com.osu.autograder.UploadBean</managed-bean-class>
+		<managed-bean-scope>application</managed-bean-scope>
+		<managed-property>
+			<property-name>assignmentBean</property-name>
+			<property-class>com.osu.autograder.AssignmentBean</property-class>
+			<value>#{assignmentBean}</value>
+		</managed-property>
+	</managed-bean>
 
 
 	<navigation-rule>

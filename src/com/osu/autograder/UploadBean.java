@@ -8,73 +8,106 @@ import java.io.OutputStream;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.myfaces.custom.fileupload.UploadedFile;
 
 public class UploadBean {
 
-    // Init ---------------------------------------------------------------------------------------
+	// Init
+	// ---------------------------------------------------------------------------------------
 
-    private UploadedFile uploadedFile;
-    private String fileName;
+	private static final String UPLOADS_MAIN_FOLDER = "D:////uploads";
+	private UploadedFile uploadedFile;
+	private String fileName;
+	private AssignmentBean assignmentBean;
 
-    // Actions ------------------------------------------------------------------------------------
+	// Actions
+	// ------------------------------------------------------------------------------------
 
-    public void submit() {
+	public void submit() {
 
-        // Just to demonstrate what information you can get from the uploaded file.
-        System.out.println("File type: " + uploadedFile.getContentType());
-        System.out.println("File name: " + uploadedFile.getName());
-        System.out.println("File size: " + uploadedFile.getSize() + " bytes");
+		// Just to demonstrate what information you can get from the uploaded
+		// file.
+		System.out.println("File type: " + uploadedFile.getContentType());
+		System.out.println("File name: " + uploadedFile.getName());
+		System.out.println("File size: " + uploadedFile.getSize() + " bytes");
 
-        // Prepare filename prefix and suffix for an unique filename in upload folder.
-        String prefix = FilenameUtils.getBaseName(uploadedFile.getName());
-        String suffix = FilenameUtils.getExtension(uploadedFile.getName());
-        
-        // Prepare file and outputstream.
-        File file = null;
-        OutputStream output = null;
-        
-        try {
-            // Create file with unique name in upload folder and write to it.
-            file = File.createTempFile(prefix + "_", "." + suffix, new File("D:////uploads"));
-            output = new FileOutputStream(file);
-            IOUtils.copy(uploadedFile.getInputStream(), output);
-            fileName = file.getName();
+		// Prepare filename prefix and suffix for an unique filename in upload
+		// folder.
+		String suffix = FilenameUtils.getExtension(uploadedFile.getName());
 
-            // Show succes message.
-            FacesContext.getCurrentInstance().addMessage("uploadForm", new FacesMessage(
-                FacesMessage.SEVERITY_INFO, "File upload succeed!", null));
-        } catch (IOException e) {
-            // Cleanup.
-            if (file != null) file.delete();
+		// Prepare file and outputstream.
+		File file = null;
+		OutputStream output = null;
 
-            // Show error message.
-            FacesContext.getCurrentInstance().addMessage("uploadForm", new FacesMessage(
-                FacesMessage.SEVERITY_ERROR, "File upload failed with I/O error.", null));
+		try {
 
-            // Always log stacktraces (with a real logger).
-            e.printStackTrace();
-        } finally {
-            IOUtils.closeQuietly(output);
-        }
-    }
+			String assignmentID = assignmentBean.getSelectedAssignmentEntity()
+					.getAssignmentID();
+			String courseID = assignmentBean.getcourseBean()
+					.getSelectedCourse().getCourseID();
+			String userID = assignmentBean.getcourseBean().getLogBean()
+					.getUserEntity().getUserID();
+			String fileName = "Assignment_" + userID;
+			File fileDir = new File(UPLOADS_MAIN_FOLDER + "\\Course" + courseID
+					+ "\\Assignment" + assignmentID + "\\User" + userID);
+			if (!fileDir.exists()) {
+				fileDir.mkdirs();
+			}
+			// Create file with unique name in upload folder and write to it.
+			file = new File(fileDir, fileName + "." + suffix);
+			output = new FileOutputStream(file);
+			IOUtils.copy(uploadedFile.getInputStream(), output);
+			fileName = file.getName();
 
-    // Getters ------------------------------------------------------------------------------------
+			// Show succes message.
+			FacesContext.getCurrentInstance().addMessage(
+					"uploadForm",
+					new FacesMessage(FacesMessage.SEVERITY_INFO,
+							"File upload succeed!", null));
+		} catch (IOException e) {
+			// Cleanup.
+			if (file != null)
+				file.delete();
 
-    public UploadedFile getUploadedFile() {
-        return uploadedFile;
-    }
+			// Show error message.
+			FacesContext.getCurrentInstance().addMessage(
+					"uploadForm",
+					new FacesMessage(FacesMessage.SEVERITY_ERROR,
+							"File upload failed with I/O error.", null));
 
-    public String getFileName() {
-        return fileName;
-    }
+			// Always log stacktraces (with a real logger).
+			e.printStackTrace();
+		} finally {
+			IOUtils.closeQuietly(output);
+		}
+	}
 
-    // Setters ------------------------------------------------------------------------------------
+	// Getters
+	// ------------------------------------------------------------------------------------
 
-    public void setUploadedFile(UploadedFile uploadedFile) {
-        this.uploadedFile = uploadedFile;
-    }
+	public UploadedFile getUploadedFile() {
+		return uploadedFile;
+	}
 
+	public String getFileName() {
+		return fileName;
+	}
+
+	// Setters
+	// ------------------------------------------------------------------------------------
+
+	public void setUploadedFile(UploadedFile uploadedFile) {
+		this.uploadedFile = uploadedFile;
+	}
+
+	public AssignmentBean getAssignmentBean() {
+		return assignmentBean;
+	}
+
+	public void setAssignmentBean(AssignmentBean assignmentBean) {
+		this.assignmentBean = assignmentBean;
+	}
 }
