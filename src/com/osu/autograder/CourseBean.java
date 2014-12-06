@@ -3,26 +3,24 @@
  */
 package com.osu.autograder;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 
+import com.osu.autograder.EJB.Entity.AssignmentEntity;
 import com.osu.autograder.EJB.Entity.CourseEntity;
-import com.osu.autograder.EJB.Entity.UserEntity;
+import com.osu.autograder.EJB.Service.AssignmentService;
 import com.osu.autograder.EJB.Service.CourseService;
 
 public class CourseBean {
 
 	@EJB
+	private AssignmentService assignmentService;
+
+	@EJB
 	private CourseService courseService;
 
 	private LoginBean logBean;
-
-	private CourseEntity selectedCourse;
-
-	private List<CourseEntity> courses = new ArrayList<CourseEntity>();
 
 	public LoginBean getLogBean() {
 		return logBean;
@@ -32,30 +30,12 @@ public class CourseBean {
 		this.logBean = logBean;
 	}
 
-	public List<CourseEntity> getCourses() {
-		return courses;
-	}
-
-	public void setCourses(List<CourseEntity> courseList) {
-		this.courses = courseList;
-	}
-
-	public void findCourses() {
-		UserEntity userEntity = logBean.getUserEntity();
-		this.courses = courseService.findCourses(userEntity);
-	}
+	private CourseEntity selectedCourse;
 
 	public boolean addCourse(CourseEntity courseEntity) {
-		UserEntity userEntity = logBean.getUserEntity();
 		return courseService.addCourse(courseEntity);
 
 	}
-
-	@PostConstruct
-	public void load() {
-		findCourses();
-	}
-	
 
 	public CourseEntity getSelectedCourse() {
 		return selectedCourse;
@@ -64,10 +44,32 @@ public class CourseBean {
 	public void setSelectedCourse(CourseEntity selectedCourse) {
 		this.selectedCourse = selectedCourse;
 	}
-	
-	
-	public String onCourseSelected(CourseEntity seleCourseEntity){
+
+	public String onCourseSelected(CourseEntity seleCourseEntity) {
 		setSelectedCourse(seleCourseEntity);
+		findAssignments();
 		return logBean.getSelection();
 	}
+
+	private void findAssignments() {
+		setAssignmentList(assignmentService.findAssignments(selectedCourse));
+	}
+
+	/**
+	 * @return the assignmentList
+	 */
+	public List<AssignmentEntity> getAssignmentList() {
+		return assignmentList;
+	}
+
+	/**
+	 * @param assignmentList
+	 *            the assignmentList to set
+	 */
+	public void setAssignmentList(List<AssignmentEntity> assignmentList) {
+		this.assignmentList = assignmentList;
+	}
+
+	private List<AssignmentEntity> assignmentList;
+
 }

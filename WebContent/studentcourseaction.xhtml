@@ -6,10 +6,6 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core">
 
-<f:metadata>
-	<f:event listener="#{assignmentBean.load}" type="preRenderView" />
-</f:metadata>
-
 <ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml">
 	<ui:define name="content">
 		<h:form>
@@ -18,7 +14,7 @@
 			<br />
 			<br />
 
-			<ui:repeat value="#{assignmentBean.assignmentList}" var="assignment">
+			<ui:repeat value="#{courseBean.assignmentList}" var="assignment">
 				<h:outputText value="Assignment "></h:outputText>
 				<h:outputText value="#{assignment.assignmentID}"></h:outputText>
 
