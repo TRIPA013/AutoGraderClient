@@ -56,6 +56,9 @@
 	</managed-bean>
 
 
+	
+
+
 	<navigation-rule>
 		<display-name>login.xhtml</display-name>
 		<from-view-id>/login.xhtml</from-view-id>
@@ -99,6 +102,7 @@
 	</navigation-rule>
 
 
+
 	<navigation-rule>
 		<display-name>studentcourseaction.xhtml</display-name>
 		<from-view-id>/studentcourseaction.xhtml</from-view-id>
@@ -108,4 +112,16 @@
 		</navigation-case>
 	</navigation-rule>
 
+
+
+	<navigation-rule>
+		<display-name>instructorcourses.xhtml</display-name>
+		<from-view-id>/instructorcourses.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>Instructor</from-outcome>
+			<to-view-id>/instructorcourseaction.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	
 </faces-config>

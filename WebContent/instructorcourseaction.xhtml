@@ -9,22 +9,45 @@
 <ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml">
 	<ui:define name="content">
 		<h:form>
-			<h:outputText value="Select Action: "></h:outputText>
-
-			<select>
-
-				<option value="add">Add Assignment</option>
-
-				<option value="grade">Grade Assignment</option>
-
-				<option value="view">View Assignments</option>
-
-
-			</select>
+			<h:outputText value="Assignments: "></h:outputText>
 
 			<br />
 			<br />
-		</h:form>
+		
+			<ui:repeat value="#{courseBean.assignmentList}" var="assignment">
+				<h:outputText value="Assignment "></h:outputText>
+				<h:outputText value="#{assignment.assignmentID}"></h:outputText>
+
+				<h:outputText value=":				"></h:outputText>
+				<h:commandButton value="Upload Solution"
+					action="#{assignmentBean.onAssignmentUploadSelected(assignment)}" />
+
+				<h:commandButton value="Grade Assignment"
+					action="#{assignmentBean.onAssignmentGradesSelected(assignment)}" />
+
+				<h:commandButton value="Email"
+					action="#{assignmentBean.onAssignmentGradesSelected(assignment)}" />
+				<br />
+
+			</ui:repeat>
+			<br />
+			<br />
+			<h:panelGrid columns="2">
+				<h:outputText value="Assignment Type:"></h:outputText>
+				<h:inputText value="#{assignmentBean.assignmentType}"></h:inputText>
+				<h:outputText value="Config File:"></h:outputText>
+				<h:inputText value="#{assignmentBean.configurationFile}"></h:inputText>
+				<h:outputText value="Directory:"></h:outputText>
+				<h:inputText value="#{assignmentBean.directory}"></h:inputText>
+				<h:outputText value="Max Points:"></h:outputText>
+				<h:inputText value="#{assignmentBean.maxPoints}"></h:inputText>
+				<h:outputText value="Assignment Name:"></h:outputText>
+				<h:inputText value="#{assignmentBean.assignmentName}"></h:inputText>
+
+			</h:panelGrid>
+
+			<h:commandButton value="Add" action="#{assignmentBean.addAssignment()}"></h:commandButton>
+</h:form>
 	</ui:define>
 </ui:composition>
 </html>

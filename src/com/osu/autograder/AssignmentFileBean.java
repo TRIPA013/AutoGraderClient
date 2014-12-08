@@ -6,12 +6,12 @@ package com.osu.autograder;
 import javax.ejb.EJB;
 
 import com.osu.autograder.EJB.Entity.AssignmentFileEntity;
-import com.osu.autograder.EJB.Service.AssignmentFileService;
+import com.osu.autograder.EJB.Service.AssignmentFileSession;
 
 public class AssignmentFileBean {
 
 	@EJB
-	private AssignmentFileService assignmentFileService;
+	private AssignmentFileSession assignmentFileService;
 	private AssignmentBean assignmentBean;
 
 	private AssignmentFileEntity assignmentFileEntity;
@@ -27,12 +27,12 @@ public class AssignmentFileBean {
 	public boolean updateAssignmentFile(
 			AssignmentFileEntity assignmentFileEntity) {
 
-		return assignmentFileService.updateAssignmentFile(assignmentFileEntity);
+		return assignmentFileService.updateAssignment(assignmentFileEntity);
 	}
 
 	public boolean addAssignmentFile(AssignmentFileEntity assignmentFileEntity) {
 
-		return assignmentFileService.updateAssignmentFile(assignmentFileEntity);
+		return assignmentFileService.updateAssignment(assignmentFileEntity);
 
 	}
 

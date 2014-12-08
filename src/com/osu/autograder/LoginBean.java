@@ -9,16 +9,16 @@ import javax.ejb.EJB;
 
 import com.osu.autograder.EJB.Entity.CourseEntity;
 import com.osu.autograder.EJB.Entity.UserEntity;
-import com.osu.autograder.EJB.Service.CourseService;
-import com.osu.autograder.EJB.Service.LoginService;
+import com.osu.autograder.EJB.Service.CourseSession;
+import com.osu.autograder.EJB.Service.LoginSession;
 
 public class LoginBean {
 
 	@EJB
-	private LoginService loginSession;
+	private LoginSession loginSession;
 
 	@EJB
-	private CourseService courseService;
+	private CourseSession courseService;
 
 	private UserEntity userEntity = new UserEntity();
 
@@ -39,7 +39,7 @@ public class LoginBean {
 	}
 
 	public String login() {
-		userEntity.setTechnology(selection.charAt(0));
+		userEntity.setRole(selection.charAt(0));
 		UserEntity newUserEntity = loginSession.login(userEntity);
 		if (newUserEntity == null) {
 			return "false";

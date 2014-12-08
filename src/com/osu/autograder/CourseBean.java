@@ -9,16 +9,16 @@ import javax.ejb.EJB;
 
 import com.osu.autograder.EJB.Entity.AssignmentEntity;
 import com.osu.autograder.EJB.Entity.CourseEntity;
-import com.osu.autograder.EJB.Service.AssignmentService;
-import com.osu.autograder.EJB.Service.CourseService;
+import com.osu.autograder.EJB.Service.AssignmentSession;
+import com.osu.autograder.EJB.Service.CourseSession;
 
 public class CourseBean {
 
 	@EJB
-	private AssignmentService assignmentService;
+	private AssignmentSession assignmentService;
 
 	@EJB
-	private CourseService courseService;
+	private CourseSession courseService;
 
 	private LoginBean logBean;
 
@@ -33,7 +33,7 @@ public class CourseBean {
 	private CourseEntity selectedCourse;
 
 	public boolean addCourse(CourseEntity courseEntity) {
-		return courseService.addCourse(courseEntity);
+		return false;
 
 	}
 

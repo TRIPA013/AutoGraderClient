@@ -45,7 +45,7 @@ public class UploadBean {
 		try {
 
 			String assignmentID = assignmentBean.getSelectedAssignmentEntity()
-					.getAssignmentID();
+					.getAssignmentID() + "";
 			String courseID = assignmentBean.getcourseBean()
 					.getSelectedCourse().getCourseID();
 			String userID = assignmentBean.getcourseBean().getLogBean()

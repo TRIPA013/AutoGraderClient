@@ -14,17 +14,14 @@
 			<br />
 			<br />
 
-			<ui:repeat value="#{instructorCoursesBean.courses}" var="x">
-				<h:outputText value="Course:"></h:outputText>
-
-
+			<ui:repeat value="#{loginBean.courses}" var="course">
 				<h:panelGrid columns="2">
 
-					<h:outputText value="Title:"></h:outputText>
-					<h:outputText value="#{x[0]}" />
+					<h:commandLink value="#{course.courseID}"
+						action="#{courseBean.onCourseSelected(course)}" />
 
-					<h:outputText value="Name:"></h:outputText>
-					<h:outputText value="#{x[1]}" />
+					<h:commandLink value="#{course.courseName}"
+						action="#{courseBean.onCourseSelected(course)}" />
 
 					<br />
 				</h:panelGrid>
