@@ -56,7 +56,7 @@
 	</managed-bean>
 
 
-	
+
 
 
 	<navigation-rule>
@@ -123,5 +123,13 @@
 		</navigation-case>
 	</navigation-rule>
 
-	
+	<navigation-rule>
+		<display-name>instructorcourses.xhtml</display-name>
+		<from-view-id>/instructorcourses.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>upload</from-outcome>
+			<to-view-id>/instructorupload.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
 </faces-config>

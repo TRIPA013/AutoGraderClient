@@ -38,6 +38,12 @@
     NAME="output" PATH="/instructorcourseaction.xhtml"
     TARGET="rules:#instructorcourseaction.xhtml" TITLE="Instructor" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
+  <PROCESS-ITEM ID="rules:#instructorcourses.xhtml:1" NAME="item1"
+   PATH="/instructorcourses.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="upload::#instructorupload.xhtml"
+    NAME="output" PATH="/instructorupload.xhtml"
+    TARGET="rules:#instructorupload.xhtml" TITLE="upload" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#loginfail.xhtml" PATH="/loginfail.xhtml"
   SHAPE="40,240,50,41" model-entity="JSFProcessGroup">
@@ -60,4 +66,6 @@
   PATH="/studentupload.xhtml" SHAPE="688,33,0,0" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM NAME="rules:#instructorcourseaction.xhtml"
   PATH="/instructorcourseaction.xhtml" SHAPE="480,305,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#instructorupload.xhtml"
+  PATH="/instructorupload.xhtml" SHAPE="496,449,0,0" model-entity="JSFProcessGroup"/>
 </PROCESS>

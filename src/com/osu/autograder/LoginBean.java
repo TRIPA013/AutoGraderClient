@@ -15,7 +15,7 @@ import com.osu.autograder.EJB.Service.LoginSession;
 public class LoginBean {
 
 	@EJB
-	private LoginSession loginSession;
+	private LoginSession loginService;
 
 	@EJB
 	private CourseSession courseService;
@@ -40,7 +40,7 @@ public class LoginBean {
 
 	public String login() {
 		userEntity.setRole(selection.charAt(0));
-		UserEntity newUserEntity = loginSession.login(userEntity);
+		UserEntity newUserEntity = loginService.login(userEntity);
 		if (newUserEntity == null) {
 			return "false";
 		}

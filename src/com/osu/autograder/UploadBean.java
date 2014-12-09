@@ -13,12 +13,15 @@ import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.myfaces.custom.fileupload.UploadedFile;
 
+import com.osu.autograder.EJB.Entity.AssignmentFileEntity;
+import com.osu.autograder.EJB.Service.AssignmentFileSession;
+
 public class UploadBean {
 
 	// Init
 	// ---------------------------------------------------------------------------------------
 
-	private static final String UPLOADS_MAIN_FOLDER = "D:////uploads";
+	private static final String UPLOADS_MAIN_FOLDER = "C:////uploads";
 	private UploadedFile uploadedFile;
 	private String fileName;
 	private AssignmentBean assignmentBean;
@@ -45,14 +48,34 @@ public class UploadBean {
 		try {
 
 			String assignmentID = assignmentBean.getSelectedAssignmentEntity()
-					.getAssignmentID() + "";
+					.getAssignmentID() +"";
 			String courseID = assignmentBean.getcourseBean()
 					.getSelectedCourse().getCourseID();
 			String userID = assignmentBean.getcourseBean().getLogBean()
 					.getUserEntity().getUserID();
-			String fileName = "Assignment_" + userID;
-			File fileDir = new File(UPLOADS_MAIN_FOLDER + "\\Course" + courseID
-					+ "\\Assignment" + assignmentID + "\\User" + userID);
+			String fileName;
+
+			AssignmentFileEntity assignmentFile = new AssignmentFileEntity();
+
+			File fileDir = null;
+			if (assignmentBean.getcourseBean().getLogBean().getUserEntity()
+					.getRole() == 'I') {
+				assignmentFile.setIsSolution("True");
+				fileName = "Solution";
+
+				fileDir = new File(UPLOADS_MAIN_FOLDER + "\\Course" + courseID
+						+ "\\Assignment" + assignmentID);
+			} else {
+				fileDir = new File(UPLOADS_MAIN_FOLDER + "\\Course" + courseID
+						+ "\\Assignment" + assignmentID);
+				fileName = "Assignment_" + userID;
+				assignmentFile.setIsSolution("False");
+			}
+
+			assignmentFile.setScore("");
+			assignmentFile.setAssignmentFileName(fileName);
+			assignmentFile.setAssignmentID(assignmentID);
+			assignmentFile.setUserID(userID);
 			if (!fileDir.exists()) {
 				fileDir.mkdirs();
 			}
@@ -67,6 +90,12 @@ public class UploadBean {
 					"uploadForm",
 					new FacesMessage(FacesMessage.SEVERITY_INFO,
 							"File upload succeed!", null));
+			
+			AssignmentFileSession assignmentFileService = new AssignmentFileSession();
+			boolean result = assignmentFileService
+					.addAssignment(assignmentFile);
+			System.out.println(result);
+			
 		} catch (IOException e) {
 			// Cleanup.
 			if (file != null)

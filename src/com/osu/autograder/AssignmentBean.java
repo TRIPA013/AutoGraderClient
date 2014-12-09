@@ -95,7 +95,7 @@ public class AssignmentBean {
 		return "grade";
 	}
 
-	public boolean addAssignment() {
+	public boolean add() {
 
 		boolean result = assignmentService.addAssignment(this.assignmentName,
 				this.assignmentType, this.configurationFile, this.MaxPoints,
