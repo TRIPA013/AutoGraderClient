@@ -90,6 +90,11 @@ public class AssignmentBean {
 		return "upload";
 	}
 
+	public void grade(AssignmentEntity assignmentEntity) {
+		setSelectedAssignmentEntity(assignmentEntity);
+		assignmentService.grade(assignmentEntity);
+	}
+
 	public String onAssignmentGradesSelected(AssignmentEntity assignmentEntity) {
 		setSelectedAssignmentEntity(assignmentEntity);
 		return "grade";
