@@ -29,6 +29,12 @@ public class LoginBean {
 	public List<CourseEntity> getCourses() {
 		return courses;
 	}
+	
+	public LoginSession getLoginSession()
+	{
+		return this.loginService;
+	}
+	
 
 	public void setCourses(List<CourseEntity> courseList) {
 		this.courses = courseList;

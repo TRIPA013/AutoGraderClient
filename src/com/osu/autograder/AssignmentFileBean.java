@@ -32,7 +32,7 @@ public class AssignmentFileBean {
 
 	public boolean addAssignmentFile(AssignmentFileEntity assignmentFileEntity) {
 
-		return assignmentFileService.updateAssignment(assignmentFileEntity);
+		return assignmentFileService.addAssignment(assignmentFileEntity);
 
 	}
 

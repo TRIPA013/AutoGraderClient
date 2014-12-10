@@ -72,7 +72,7 @@ public class UploadBean {
 				assignmentFile.setIsSolution("False");
 			}
 
-			assignmentFile.setScore("");
+			assignmentFile.setScore("0");
 			assignmentFile.setAssignmentFileName(fileName);
 			assignmentFile.setAssignmentID(assignmentID);
 			assignmentFile.setUserID(userID);

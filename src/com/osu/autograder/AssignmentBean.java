@@ -1,12 +1,15 @@
-/**
- * 
- */
 package com.osu.autograder;
+
+import java.util.List;
 
 import javax.ejb.EJB;
 
+import Email.Email;
+
 import com.osu.autograder.EJB.Entity.AssignmentEntity;
+import com.osu.autograder.EJB.Entity.UserEntity;
 import com.osu.autograder.EJB.Service.AssignmentSession;
+import com.osu.autograder.EJB.Service.LoginSession;
 
 public class AssignmentBean {
 
@@ -90,11 +93,6 @@ public class AssignmentBean {
 		return "upload";
 	}
 
-	public void grade(AssignmentEntity assignmentEntity) {
-		setSelectedAssignmentEntity(assignmentEntity);
-		assignmentService.grade(assignmentEntity);
-	}
-
 	public String onAssignmentGradesSelected(AssignmentEntity assignmentEntity) {
 		setSelectedAssignmentEntity(assignmentEntity);
 		return "grade";
@@ -108,4 +106,26 @@ public class AssignmentBean {
 						.getCourseID());
 		return result;
 	}
+
+	public void email() {
+
+		LoginSession login = this.courseBean.getLogBean().getLoginSession();
+		List<UserEntity> users = login.findEmails(this.courseBean
+				.getSelectedCourse().getCourseID());
+
+		if (users.size() > 0) {
+			String[] emailAdds = new String[users.size()];
+
+			for (int i = 0; i < users.size(); i++) {
+				emailAdds[i] = users.get(i).getEmailAdd();
+			}
+
+			String emailSubject = "Autograder Notification";
+			String emailBody = "Your assignment has been graded";
+			Email email = new Email(emailAdds, emailSubject, emailBody);
+			email.SendEmail();
+		}
+	}
+
 }
+	
