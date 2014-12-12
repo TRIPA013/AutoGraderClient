@@ -8,7 +8,6 @@ import java.io.OutputStream;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.myfaces.custom.fileupload.UploadedFile;
@@ -67,8 +66,8 @@ public class UploadBean {
 						+ "\\Assignment" + assignmentID);
 			} else {
 				fileDir = new File(UPLOADS_MAIN_FOLDER + "\\Course" + courseID
-						+ "\\Assignment" + assignmentID);
-				fileName = "Assignment_" + userID;
+						+ "\\Assignment" + assignmentID+"\\User"+userID);
+				fileName = "Assignment_" + assignmentID;
 				assignmentFile.setIsSolution("False");
 			}
 

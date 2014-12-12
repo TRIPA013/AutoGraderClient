@@ -1,0 +1,28 @@
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <SCRIPT language="JavaScript" src="ajax.js"></SCRIPT>
+    <title>Example EJB Servlet AJAX</title>
+</head>
+<body onload="focusIn();">
+    <h1> Access an EJB using AJAX </h1>
+    <h2> Submit a request to the server. </h2>
+    <table>
+        <tr>
+            <td>
+                <button id="MyButton" onclick="submitRequest()">Submit
+	      Request</button>
+            </td>
+        </tr>
+    </table>
+    <br />
+    <table>
+        <tr>
+            <td> EJB String </td>
+        </tr>
+        <tr>
+            <td><input type="text" readonly id="retval"></td>
+        </tr>
+    </table>
+</body>
+</html>

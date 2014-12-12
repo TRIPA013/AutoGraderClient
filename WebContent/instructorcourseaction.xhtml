@@ -6,8 +6,15 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core">
 
+
+
+
+
 <ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml">
+
 	<ui:define name="content">
+		<h:outputScript name="ajax.js"/>
+
 		<h:form>
 			<h:outputText value="Assignments: "></h:outputText>
 
@@ -21,10 +28,11 @@
 				<h:outputText value=":				"></h:outputText>
 				<h:commandButton value="Upload Solution"
 					action="#{assignmentBean.onAssignmentUploadSelected(assignment)}" />
+				<h:button id="MyButton" value="Total Uploads" onclick="submitRequest(#{assignment.assignmentID},#{courseBean.selectedCourse.courseID})"></h:button>
 
 				<h:commandButton value="Grade Assignment"
 					action="#{assignmentBean.grade(assignment)}" />
-
+			
 				<h:commandButton value="Email"
 					action="#{assignmentBean.email()}" />
 				<br />
@@ -53,6 +61,9 @@
 			<br />
 			<h:commandButton value="Save" action="#{assignmentBean.add()}"></h:commandButton>
 		</h:form>
+		<input type="text"  id="retval"/>
+		
 	</ui:define>
 </ui:composition>
+
 </html>
